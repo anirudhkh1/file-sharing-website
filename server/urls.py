@@ -17,33 +17,36 @@ from django.views.generic import TemplateView
 from health_check import urls as health_urls
 
 from server.apps.main import urls as main_urls
-from server.apps.main.views import index
+
+from . import views
 
 admin.autodiscover()
 
 urlpatterns = [
     # Apps:
-    path('main/', include(main_urls, namespace='main')),
-
+    path("main/", include(main_urls, namespace="main")),
     # Health checks:
-    path('health/', include(health_urls)),
-
+    path("health/", include(health_urls)),
     # django-admin:
-    path('admin/doc/', include(admindocs_urls)),
-    path('admin/', admin.site.urls),
-
+    path("admin/doc/", include(admindocs_urls)),
+    path("admin/", admin.site.urls),
     # Text and xml static files:
-    path('robots.txt', TemplateView.as_view(
-        template_name='txt/robots.txt',
-        content_type='text/plain',
-    )),
-    path('humans.txt', TemplateView.as_view(
-        template_name='txt/humans.txt',
-        content_type='text/plain',
-    )),
-
+    path(
+        "robots.txt",
+        TemplateView.as_view(
+            template_name="txt/robots.txt",
+            content_type="text/plain",
+        ),
+    ),
+    path(
+        "humans.txt",
+        TemplateView.as_view(
+            template_name="txt/humans.txt",
+            content_type="text/plain",
+        ),
+    ),
     # It is a good practice to have explicit index view:
-    path('', index, name='index'),
+    path("", views.IndexView.as_view(), name="index"),
 ]
 
 if settings.DEBUG:  # pragma: no cover
@@ -52,7 +55,7 @@ if settings.DEBUG:  # pragma: no cover
 
     urlpatterns = [
         # URLs specific only to django-debug-toolbar:
-        path('__debug__/', include(debug_toolbar.urls)),
+        path("__debug__/", include(debug_toolbar.urls)),
         *urlpatterns,
         # Serving media files in development only:
         *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
