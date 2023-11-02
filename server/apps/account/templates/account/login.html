@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main_content %}
+  <div class="row no-gutters">
+    <div class="col-lg-6 hidden-md-down">
+      <div class="bg-stretch img-wrap">
+        <img src="{% static "img/visual-12.jpg" %}" alt="images" />
+      </div>
+    </div>
+    <div class="col-lg-6 signup-block">
+      <div class="signup-wrap text-center">
+        <div class="inner-wrap">
+          <div class="circular-icon bottom-space">
+            <i class="icon-sign-in"></i>
+          </div>
+          <form action="{% url 'account:login' %}"
+                method="post"
+                id="contact_form"
+                class="waituk_contact-form signup-form">
+            {% csrf_token %}
+            <h2 class="bottom-space">User Login</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.username }}
+                  {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                      <label for="{{ form.username.id_for_label }}" generated="true" class="error">
+                        {{ error }}
+                      </label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.password }}
+                  {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                      <label for="{{ form.password.id_for_label }}" generated="true" class="error">
+                        {{ error }}
+                      </label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                      <label generated="true" class="error">{{ error }}</label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="waituk_select-box">
+                  <div class="waituk_select-box-default square-box">
+                    <input type="checkbox" name="checkbox" id="checkbox11" />
+                    <label for="checkbox11" class="m-0">REMEMBER ME</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <a href="#">Forgot Password ?</a>
+                </p>
+              </div>
+            </div>
+            <div class="btn-container mb-3  mb-xl-3 mt-xl-5 mt-lg-2">
+              <button id="btn_sent" class="btn btn-primary has-radius-small">Login</button>
+            </div>
+            <p>
+              Don't have an account yet?
+              <a href="{% url 'account:register' %}">Register New Account.</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock main_content %}
