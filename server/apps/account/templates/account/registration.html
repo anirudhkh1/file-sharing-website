@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main_content %}
+  <div class="row no-gutters">
+    <div class="col-lg-6 hidden-md-down">
+      <div class="bg-stretch img-wrap">
+        <img src="{% static "img/visual-12.jpg" %}" alt="images">
+      </div>
+    </div>
+    <div class="col-lg-6 signup-block">
+      <div class="signup-wrap text-center">
+        <div class="inner-wrap">
+          <div class="circular-icon bottom-space">
+            <i class="icon-user-outline"></i>
+          </div>
+          <form action="{% url "account:register" %}"
+                method="post"
+                id="contact_form"
+                class="waituk_contact-form signup-form">
+            {% csrf_token %}
+            <h2 class="bottom-space">Be a Part of Roxine Creatives</h2>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  {{ form.email }}
+                  {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                      <label for="{{ form.email.id_for_label }}" generated="true" class="error">
+                        {{ error }}
+                      </label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.password1 }}
+                  {% if form.password1.errors %}
+                    {% for error in form.password1.errors %}
+                      <label for="{{ form.password1.id_for_label }}"
+                             generated="true"
+                             class="error">{{ error }}</label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.password2 }}
+                  {% if form.password2.errors %}
+                    {% for error in form.password2.errors %}
+                      <label for="{{ form.password2.id_for_label }}"
+                             generated="true"
+                             class="error">{{ error }}</label>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <p>
+              By clicking on the “Create Account” button below, you are agreeing
+              to <a href="#">our terms of services.</a>
+            </p>
+            <div class="btn-container mt-xl-5 mt-lg-2">
+              <button id="btn_sent" class="btn btn-primary has-radius-small">
+                CREATE ACCOUNT
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock main_content %}
