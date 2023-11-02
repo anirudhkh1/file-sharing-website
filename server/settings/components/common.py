@@ -163,6 +163,7 @@ MEDIA_ROOT = BASE_DIR.joinpath("media")
 # https://docs.djangoproject.com/en/4.2/topics/auth/
 
 AUTHENTICATION_BACKENDS = (
+    "server.apps.account.backends.EmailBackend",
     "axes.backends.AxesBackend",
     "django.contrib.auth.backends.ModelBackend",
 )
@@ -205,3 +206,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # AUTH USER MODEL
 AUTH_USER_MODEL = "account.User"
+LOGIN_REDIRECT_URL = "index"
