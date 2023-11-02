@@ -17,6 +17,7 @@ from django.views.generic import TemplateView
 from health_check import urls as health_urls
 
 from server.apps.main import urls as main_urls
+from server.apps.account import urls as account_urls
 
 from . import views
 
@@ -25,6 +26,8 @@ admin.autodiscover()
 urlpatterns = [
     # Apps:
     path("main/", include(main_urls, namespace="main")),
+    # Authentication
+    path("", include(account_urls, namespace="accounts")),
     # Health checks:
     path("health/", include(health_urls)),
     # django-admin:
