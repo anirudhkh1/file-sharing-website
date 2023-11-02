@@ -11,7 +11,7 @@
               <button type="button" class="navbar-toggler navbar-toggler-left" data-toggle="collapse" data-target="#mega-menu">
                   <span class="navbar-toggler-icon"></span>
               </button>
-              <a class="navbar-brand mr-auto m-sm-auto" href="index.html"> <img src="{% static "img/logo.svg" %}" alt="roxine"> <img src="{% static "img/logo-dark.svg" %}" alt="roxine"> </a>
+              <a class="navbar-brand mr-auto m-sm-auto" href="{% url 'index' %}"> <img src="{% static "img/logo.svg" %}" alt="roxine"> <img src="{% static "img/logo-dark.svg" %}" alt="roxine"> </a>
               <div class="collapse navbar-collapse flex-row-reverse" id="mega-menu">
                   <ul class="nav navbar-nav">
                       <li class="dropdown" data-animation="fadeIn">
