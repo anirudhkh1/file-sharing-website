@@ -14,6 +14,4 @@ class FileUpload(models.Model):
     download_limit = models.IntegerField(
         validators=[MaxValueValidator(10), MinValueValidator(1)],
     )
-    expiration_days = models.IntegerField(
-        validators=[MaxValueValidator(10), MinValueValidator(1)],
-    )
+    expiration_date = models.DateTimeField()
